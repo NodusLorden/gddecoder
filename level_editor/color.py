@@ -97,10 +97,12 @@ class Color:
             "4", self.player_color,
             "6", color_id + 1,
             "5", self.blending,
-            "7", self.opacity,
-            "9", self.target_channel_id,
-            "10", self.color_HSV.to_str(),
-            "17", self.copy_opacity,
+            "7", self.opacity
+        ] + \
+        ["9", self.target_channel_id] if hasattr(self, "target_channel_id") else [] +\
+        ["10", self.color_HSV.to_str()] if hasattr(self, "color_HSV") else [] +\
+        ["17", self.copy_opacity] if hasattr(self, "copy_opacity") else [] +\
+        [
             "18", self.k18,
             "8", self.k8,
             "15", self.k15,

@@ -72,10 +72,13 @@ class Block(dict):
         for key, val in self.items():
             if type(key) == int:
                 data_key = str(key)
+            elif type(key) == str:
+                data_key = key
             elif type(key) == BlockSettings:
                 data_key = str(key.value)
             else:
-                raise TypeError
+                print(key)
+                raise TypeError(f"{key}, type, {type(key)}, not support")
 
             if isinstance(val, ComplexProperty):
                 val_data = val.to_str()
